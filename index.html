@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Play!</title>
+  </head>
+  <body>
+    <div class="float">
+      <button class="help_open">Help</button>
+      <dialog class="help">
+        <h1>How to Play</h1>
+        <p>
+          In this card game, both players and the computer are initially dealt
+          three cards each. The first card can have a value of up to 3, while
+          the second and third cards can have values of up to 5 and 7,
+          respectively(both computer's and players). Players have the
+          flexibility to choose any number of cards from their deck.
+        </p>
+        <br />
+        <p>
+          If a player's card totals 8, they secure a victory in that round.
+          However, if a player's card exceeds 8, they automatically lose the
+          round. In the event that a player's total card points fall below 8,
+          they can challenge the computer's cards.
+        </p>
+        <br />
+        <p>
+          At first, player's points are compared with the combined points of the
+          computer's first two cards. If player's points lower, then player lose
+          the round, even if computer's third card could push the total above
+          8(read next rule for more)
+        </p>
+        <br />
+        <p>
+          If a player's points exceed the total points of the computer's three
+          cards, they win the round. Conversely, if a player's points are lower
+          than the computer's points and the computer's total is less than 8,
+          the player loses the round. Lastly, if the computer's three-card total
+          exceeds 8, victory is awarded to the player.
+        </p>
+        <button class="help_close">Close</button>
+      </dialog>
+      <button class="continue">Start</button>
+    </div>
+    <div class="score Computers_score">
+      <p>SCORE <span class="computer_score">0</span></p>
+    </div>
+    <div class="playarea">
+      <div class="deck computers_deck">
+        <button class="cards ccards computers_card1">?</button>
+        <button class="cards ccards computers_card2">?</button>
+        <button class="cards ccards computers_card3">?</button>
+      </div>
+      <div class="stats">
+        <p class="statstext">0</p>
+        <span class="statstext2">Click Start</span>
+        <button class="hitbtn">CHECK</button>
+      </div>
+      <div class="deck players_deck">
+        <button class="cards pcard players_card1">UPTO 3</button>
+        <button class="cards pcard players_card2">UPTO 5</button>
+        <button class="cards pcards players_card3">UPTO 7</button>
+      </div>
+    </div>
+    <div class="score players_score">
+      <p>SCORE <span class="player_score">0</span></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

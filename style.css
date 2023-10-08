@@ -1,0 +1,109 @@
+@font-face {
+  font-family: retro gaming;
+  src: url(./Assests/Retro\ Gaming.ttf);
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: url(./Assests/play_bg.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 8fr 1fr;
+  font-family: retro gaming;
+  color: white;
+  text-transform: uppercase;
+}
+
+.float {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 90vw;
+}
+.float button {
+  width: 100px;
+  font-family: retro gaming;
+  padding: 8px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.statstext {
+  margin: 0;
+}
+
+.stats button {
+  width: 100px;
+  font-family: retro gaming;
+  padding: 8px;
+  border: 2px solid black;
+  cursor: pointer;
+  display: none;
+}
+.playarea {
+  display: grid;
+  grid-template-rows: 4fr 2fr 4fr;
+}
+
+.deck {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  border: 1px solid white;
+  background: url(./Assests/card.png);
+  background-position: center;
+  background-size: cover;
+  width: 100px;
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* transition: 0.5s; */
+  font-size: 3.5em;
+  color: white;
+  font-family: retro gaming;
+}
+
+.computers_card2,
+.players_card2 {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.players_card1,
+.players_card2,
+.players_card3 {
+  font-size: 1.8em;
+}
+/* .players_card1:hover,
+  .players_card2:hover,
+  .players_card3:hover {
+    width: 120px;
+    height: 170px;
+    font-size: 2em;
+  } */
+
+.score {
+  display: flex;
+  justify-content: center;
+  /* display: none; */
+}
+
+.score p {
+  display: none;
+}
+.help {
+  text-align: center;
+}
