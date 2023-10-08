@@ -1,6 +1,6 @@
 # Guess My Deck
 
-Welcome to this repo .
+Play:  https://musfirofficial.github.io/guess_my_deck/
 
 ## Table of Contents
 
