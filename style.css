@@ -1,109 +1,206 @@
-@font-face {
-  font-family: retro gaming;
-  src: url(./Assests/Retro\ Gaming.ttf);
-}
-body {
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
   margin: 0;
-  box-sizing: border-box;
-  background: url(./Assests/play_bg.jpg);
-  background-position: center;
-  background-size: cover;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   height: 100vh;
+  color: #333;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   display: grid;
   grid-template-rows: 1fr 8fr 1fr;
-  font-family: retro gaming;
-  color: white;
-  text-transform: uppercase;
-}
-
-.float {
-  display: flex;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 90vw;
-}
-.float button {
-  width: 100px;
-  font-family: retro gaming;
-  padding: 8px;
-  border: 2px solid black;
-  cursor: pointer;
-}
-.stats {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-}
-.statstext {
-  margin: 0;
 }
 
-.stats button {
-  width: 100px;
-  font-family: retro gaming;
-  padding: 8px;
-  border: 2px solid black;
-  cursor: pointer;
-  display: none;
+.botscore,
+.playerscore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  border-radius: 50rem;
 }
+
+p {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 8px;
+  border-radius: 50rem;
+}
+
 .playarea {
+  position: static;
+  width: 80vw;
+  height: 80vh;
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(200px);
+  filter: blur();
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
   display: grid;
   grid-template-rows: 4fr 2fr 4fr;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
 }
 
 .deck {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  border-radius: 9px;
   display: flex;
-  padding: 10px;
   justify-content: center;
   align-items: center;
 }
 
-.cards {
-  border: 1px solid white;
-  background: url(./Assests/card.png);
-  background-position: center;
-  background-size: cover;
+.card {
+  margin: 0;
   width: 100px;
   height: 150px;
-  border-radius: 10px;
+  border: none;
+  background: url(./Assests/card.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  font-size: 4em;
+}
+
+.card1 {
+  margin: 0;
+  width: 100px;
+  height: 150px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  font-size: 4em;
+}
+
+.playercard {
   cursor: pointer;
-  /* transition: 0.5s; */
-  font-size: 3.5em;
-  color: white;
-  font-family: retro gaming;
+}
+.playercard:hover {
+  transform: translate(0%, 1px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
-.computers_card2,
-.players_card2 {
-  margin-left: 60px;
-  margin-right: 60px;
+.botcard1,
+.playercard1 {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.players_card1,
-.players_card2,
-.players_card3 {
-  font-size: 1.8em;
-}
-/* .players_card1:hover,
-  .players_card2:hover,
-  .players_card3:hover {
-    width: 120px;
-    height: 170px;
-    font-size: 2em;
-  } */
-
-.score {
+.buttons {
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  /* display: none; */
 }
 
-.score p {
+.buttonsonly {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  color: #444;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.2s;
+  width: 120px;
+  margin: 15px;
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 50rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  transform: translate(0%, 2px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.playerwinner {
+  background-color: #2f2f2f;
+}
+
+.hidden {
   display: none;
 }
-.help {
-  text-align: center;
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  overflow: scroll;
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.modal {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.show-modal {
+  position: absolute;
+  top: 0%;
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
+  width: 20px;
+  height: 20px;
+  font-size: 2em;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,213 +1,204 @@
 'use strict';
 
-// let computerScore = 10;
-// let playerScore = 10;
+// Help button
+//Declare variables
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.close-modal');
+const btnShowModal = document.querySelector('.show-modal');
 
-//Help Button
-const modal = document.querySelector('.help');
-const openModal = document.querySelector('.help_open');
-const closeModal = document.querySelector('.help_close');
+//Open function
+const funcOpenModal = () => {
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
 
-openModal.addEventListener('click', () => {
-  modal.showModal();
+//Close function
+const funcCloseModal = () => {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+//Open Modal
+btnShowModal.addEventListener('click', funcOpenModal);
+
+//Close modal
+btnCloseModal.addEventListener('click', funcCloseModal);
+overlay.addEventListener('click', funcCloseModal);
+//Close modal by key event
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    funcCloseModal();
+  }
 });
-closeModal.addEventListener('click', () => {
-  modal.close();
+
+// Element Selector
+const continueBtn = document.querySelector('.start');
+const checkBtn = document.querySelector('.check');
+const card = document.querySelectorAll('.card');
+const playerCard = document.querySelectorAll('.playercard');
+const botCard = document.querySelectorAll('.botcard');
+const text = document.querySelector('.text');
+const botScoreDisplay = document.querySelector('.bot');
+const playerScoreDisplay = document.querySelector('.player');
+
+// Variables
+let currentScore = 0;
+let botScore = 0;
+let playerScore = 0;
+let secretNumbers = [];
+
+// Button visible function
+checkBtn.style.display = 'none';
+continueBtn.style.display = 'none';
+
+// Won
+const won = function () {
+  playerCard[0].removeEventListener('click', playerCard0);
+  playerCard[1].removeEventListener('click', playerCard1);
+  playerCard[2].removeEventListener('click', playerCard2);
+  document.querySelector('.playerdeck').classList.add('playerwinner');
+
+  text.textContent = 'You won the Round';
+  if (playerScore < 100) {
+    playerScore += currentScore;
+    playerScoreDisplay.textContent = playerScore;
+  } else {
+  }
+  continueBtn.style.display = 'block';
+  checkBtn.style.display = 'none';
+};
+
+// Lost
+const lost = function () {
+  playerCard[0].removeEventListener('click', playerCard0);
+  playerCard[1].removeEventListener('click', playerCard1);
+  playerCard[2].removeEventListener('click', playerCard2);
+  document.querySelector('.botdeck').classList.add('playerwinner');
+
+  text.textContent = 'You lost the Round';
+  if (botScore < 100) {
+    botScore += currentScore;
+    botScoreDisplay.textContent = botScore;
+  } else {
+  }
+  continueBtn.style.display = 'block';
+  checkBtn.style.display = 'none';
+};
+
+// Condition
+const condition = function () {
+  if (currentScore === 8) {
+    won();
+  } else if (currentScore > 8) {
+    lost();
+  }
+};
+
+// Card 1
+function playerCard0() {
+  secretNumbers[0] = Math.trunc(Math.random() * 3) + 1;
+  currentScore += secretNumbers[0];
+  text.textContent = currentScore;
+  playerCard[0].textContent = secretNumbers[0];
+  playerCard[0].classList.remove('card');
+  playerCard[0].classList.add('card1');
+  checkBtn.style.display = 'block';
+  condition();
+  playerCard[0].removeEventListener('click', playerCard0);
+}
+playerCard[0].addEventListener('click', playerCard0);
+
+// Card 2
+function playerCard1() {
+  secretNumbers[1] = Math.trunc(Math.random() * 5) + 1;
+  currentScore += secretNumbers[1];
+  text.textContent = currentScore;
+  playerCard[1].textContent = secretNumbers[1];
+  playerCard[1].classList.remove('card');
+  playerCard[1].classList.add('card1');
+  checkBtn.style.display = 'block';
+  condition();
+  playerCard[1].removeEventListener('click', playerCard1);
+}
+playerCard[1].addEventListener('click', playerCard1);
+
+// Card 3
+function playerCard2() {
+  secretNumbers[2] = Math.trunc(Math.random() * 7) + 1;
+  currentScore += secretNumbers[2];
+  text.textContent = currentScore;
+  playerCard[2].textContent = secretNumbers[2];
+  playerCard[2].classList.remove('card');
+  playerCard[2].classList.add('card1');
+  checkBtn.style.display = 'block';
+  condition();
+  playerCard[2].removeEventListener('click', playerCard2);
+}
+playerCard[2].addEventListener('click', playerCard2);
+
+// Start Button
+continueBtn.addEventListener('click', () => {
+  for (let i = 0; i < card.length; i++) {
+    card[i].classList.remove('card1');
+    card[i].classList.add('card');
+    card[i].textContent = undefined;
+  }
+  currentScore = 0;
+  continueBtn.style.display = 'none';
+  text.textContent = 'Start to Pick Card/s';
+  playerCard[0].addEventListener('click', playerCard0);
+  playerCard[1].addEventListener('click', playerCard1);
+  playerCard[2].addEventListener('click', playerCard2);
+  document.querySelector('.playerdeck').classList.remove('playerwinner');
+  document.querySelector('.botdeck').classList.remove('playerwinner');
 });
 
-//Start Button
-document.querySelector('.continue').addEventListener('click', function () {
-  //Score Display Function
-  // const scoreDisplay = () => {
-  //   document.querySelector('.computer_score').textContent = computerScore;
-  //   document.querySelector('.player_score').textContent = playerScore;
-  // };
-
-  //Text Display
-  document.querySelector('.hitbtn').style.display = 'none';
-  document.querySelector('.continue').textContent = 'Continue';
-  document.querySelector('.statstext2').textContent = 'Pick Card/s';
-  document.querySelector('.players_card1').textContent = 'UPTO 3';
-  document.querySelector('.players_card2').textContent = 'UPTO 5';
-  document.querySelector('.players_card3').textContent = 'UPTO 7';
-  document.querySelector('.computers_card1').textContent = '?';
-  document.querySelector('.computers_card2').textContent = '?';
-  document.querySelector('.computers_card3').textContent = '?';
-
-  let playerPoints = 0;
-
-  const secretNumbers = [
-    Math.trunc(Math.random() * 3) + 1,
-    Math.trunc(Math.random() * 5) + 1,
-    Math.trunc(Math.random() * 7) + 1,
+// Check Button
+checkBtn.addEventListener('click', function () {
+  // Set bot points
+  let secretNumbers2 = [
     Math.trunc(Math.random() * 3) + 1,
     Math.trunc(Math.random() * 5) + 1,
     Math.trunc(Math.random() * 7) + 1,
   ];
+  let secretNumbers34 = secretNumbers2[0] + secretNumbers2[1];
+  let secretNumbers345 =
+    secretNumbers2[0] + secretNumbers2[1] + secretNumbers2[2];
 
-  //Variables
-  const secretNumbers345 =
-    secretNumbers[3] + secretNumbers[4] + secretNumbers[5];
-
-  const secretNumbers34 = secretNumbers[3] + secretNumbers[4];
-
-  //Condition for score
-
-  // const scoreCondition = function () {
-  //   if (playerPoints === 8) {
-  //     computerScore--;
-  //     playerScore++;
-  //   } else if (playerPoints > 8) {
-  //     computerScore++;
-  //     playerScore--;
-  //   }
-  //   scoreDisplay();
-  // };
-
-  //condition for restrict to pick cards
-
-  const cardCondition = function (card, Func) {
-    if (playerPoints === 8) {
-      document.querySelector('.hitbtn').style.display = 'none';
-      document.querySelector(card).removeEventListener('click', Func);
-      document.querySelector('.statstext2').textContent =
-        'You won the round, Click continue';
-    } else if (playerPoints > 8) {
-      document.querySelector('.hitbtn').style.display = 'none';
-      document.querySelector(card).removeEventListener('click', Func);
-      document.querySelector('.statstext2').textContent =
-        'You lost the round, click continue';
-    } else {
-      document.querySelector('.statstext2').textContent = 'click check';
-    }
+  // Display bot cards
+  const displayBot = function (i, display) {
+    botCard[i].classList.remove('card');
+    botCard[i].classList.add('card1');
+    botCard[i].textContent = display;
   };
-
-  //Card 1---------------------------------------------------------
-  //Function
-  const card1 = () => {
-    document.querySelector('.players_card1').textContent = secretNumbers[0];
-    playerPoints += secretNumbers[0];
-    document.querySelector('.statstext').textContent = playerPoints;
-    document.querySelector('.hitbtn').style.display = 'block';
-    //score condition
-    // scoreCondition();
-    //Condition Function
-    cardCondition('.players_card2', card2);
-    cardCondition('.players_card3', card3);
-    //------------------------
-    document
-      .querySelector('.players_card1')
-      .removeEventListener('click', card1);
-  };
-  //Call Function
-  document.querySelector('.players_card1').addEventListener('click', card1);
-
-  //Card 2-------------------------------------------------------
-  //Function
-  const card2 = () => {
-    document.querySelector('.players_card2').textContent = secretNumbers[1];
-    playerPoints += secretNumbers[1];
-    document.querySelector('.statstext').textContent = playerPoints;
-    document.querySelector('.hitbtn').style.display = 'block';
-    //score condition
-    // scoreCondition();
-    //Condition Function
-    cardCondition('.players_card1', card1);
-    cardCondition('.players_card3', card3);
-    //-----------------------------------------
-    document
-      .querySelector('.players_card2')
-      .removeEventListener('click', card2);
-  };
-  //Call Function
-  document.querySelector('.players_card2').addEventListener('click', card2);
-
-  //Card 3---------------------------------------------------------
-  //Function
-  const card3 = () => {
-    document.querySelector('.players_card3').textContent = secretNumbers[2];
-    playerPoints += secretNumbers[2];
-    document.querySelector('.statstext').textContent = playerPoints;
-    document.querySelector('.hitbtn').style.display = 'block';
-    //score condition
-    // scoreCondition();
-    //Condition Function
-    cardCondition('.players_card2', card2);
-    cardCondition('.players_card1', card1);
-    //-----------------------------------------
-    document
-      .querySelector('.players_card3')
-      .removeEventListener('click', card3);
-  };
-  //Call Function
-  document.querySelector('.players_card3').addEventListener('click', card3);
-
-  //----------------------------------------------------------------
-
-  //Text display on card function
-
-  const displayFunc = function (display1, display2, display3) {
-    document.querySelector('.computers_card1').textContent = display1;
-    document.querySelector('.computers_card2').textContent = display2;
-    document.querySelector('.computers_card3').textContent = display3;
-  };
-
-  //Win Function
-  const winFunc = function () {
-    document.querySelector('.statstext2').textContent =
-      'You Won the round, click continue';
-    // playerScore++;
-    // computerScore--;
-    document.querySelector('.hitbtn').style.display = 'none';
-    // scoreDisplay();
-  };
-
-  //Lost function
-  const lostFunc = function () {
-    document.querySelector('.statstext2').textContent =
-      'You lost the round, click continue';
-    // playerScore--;
-    // computerScore++;
-    document.querySelector('.hitbtn').style.display = 'none';
-    // scoreDisplay();
-  };
-  //Check button
-
-  document.querySelector('.hitbtn').addEventListener('click', function () {
+  // Conditions 2
+  if (
+    secretNumbers34 === 8 ||
+    secretNumbers34 === currentScore ||
+    secretNumbers34 > currentScore
+  ) {
+    displayBot(0, secretNumbers2[0]);
+    displayBot(1, secretNumbers2[1]);
+    lost();
+  } else if (secretNumbers34 < currentScore) {
     if (
-      secretNumbers34 === 8 ||
-      secretNumbers34 > playerPoints ||
-      secretNumbers34 === playerPoints
+      currentScore === secretNumbers345 ||
+      secretNumbers345 === 8 ||
+      (secretNumbers345 > currentScore && secretNumbers345 < 8)
     ) {
-      displayFunc(secretNumbers[3], secretNumbers[4], '?');
-      lostFunc();
-    } else if (secretNumbers34 < playerPoints) {
-      if (playerPoints === secretNumbers345) {
-        document.querySelector('.statstext2').textContent = 'Round Draw';
-        displayFunc(secretNumbers[3], secretNumbers[4], secretNumbers[5]);
-        document.querySelector('.hitbtn').style.display = 'none';
-      } else if (playerPoints > secretNumbers345 && playerPoints < 8) {
-        displayFunc(secretNumbers[3], secretNumbers[4], secretNumbers[5]);
-        winFunc();
-      } else if (secretNumbers345 === 8) {
-        displayFunc(secretNumbers[3], secretNumbers[4], secretNumbers[5]);
-        lostFunc();
-      } else if (secretNumbers345 > playerPoints && secretNumbers345 < 8) {
-        displayFunc(secretNumbers[3], secretNumbers[4], secretNumbers[5]);
-        lostFunc();
-      } else if (secretNumbers345 > 8) {
-        displayFunc(secretNumbers[3], secretNumbers[4], secretNumbers[5]);
-        winFunc();
-      }
+      displayBot(0, secretNumbers2[0]);
+      displayBot(1, secretNumbers2[1]);
+      displayBot(2, secretNumbers2[2]);
+      lost();
+    } else if (currentScore > secretNumbers345 || secretNumbers345 > 8) {
+      displayBot(0, secretNumbers2[0]);
+      displayBot(1, secretNumbers2[1]);
+      displayBot(2, secretNumbers2[2]);
+      won();
     }
-  });
+  }
 
-  //last
-  playerPoints = playerPoints * 0;
-  document.querySelector('.statstext').textContent = playerPoints;
-
-  //cheat
-  console.log('-----1st 2 cards-------------all 3 cards------------');
-  console.log(secretNumbers34);
-  console.log(secretNumbers345);
+  continueBtn.style.display = 'block';
+  checkBtn.style.display = 'none';
 });
