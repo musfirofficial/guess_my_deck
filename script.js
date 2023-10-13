@@ -1,6 +1,5 @@
 'use strict';
 
-// Help button
 //Declare variables
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
@@ -139,6 +138,13 @@ playerCard[2].addEventListener('click', playerCard2);
 
 // Start Button
 continueBtn.addEventListener('click', () => {
+  if (botScore >= 100) {
+    overlay.style.display = 'block';
+    document.querySelector('.lost').classList.remove('hidden')
+  } else if (playerScore >= 100) {
+    overlay.style.display = 'block';
+    document.querySelector('.win').classList.remove('hidden')
+  }
   for (let i = 0; i < card.length; i++) {
     card[i].classList.remove('card1');
     card[i].classList.add('card');
