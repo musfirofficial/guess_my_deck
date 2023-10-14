@@ -1,4 +1,18 @@
 'use strict';
+// Player Name
+const inputName = document.getElementById('pn');
+const playerName = document.querySelector('.playername1');
+const playBtn = document.querySelector('.playbtn');
+
+playBtn.addEventListener('click', function () {
+  let playerId = inputName.value;
+
+  if (playerId !== '') {
+    playerName.innerHTML = playerId;
+    document.querySelector('.overlay2').style.display = 'none';
+    document.querySelector('.playername').style.display = 'none';
+  }
+});
 
 //Declare variables
 const modal = document.querySelector('.modal');
@@ -140,10 +154,10 @@ playerCard[2].addEventListener('click', playerCard2);
 continueBtn.addEventListener('click', () => {
   if (botScore >= 100) {
     overlay.style.display = 'block';
-    document.querySelector('.lost').classList.remove('hidden')
+    document.querySelector('.lost').classList.remove('hidden');
   } else if (playerScore >= 100) {
     overlay.style.display = 'block';
-    document.querySelector('.win').classList.remove('hidden')
+    document.querySelector('.win').classList.remove('hidden');
   }
   for (let i = 0; i < card.length; i++) {
     card[i].classList.remove('card1');

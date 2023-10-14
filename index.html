@@ -7,7 +7,13 @@
     <title>Guess My Deck</title>
   </head>
   <body>
+    <div class="overlay2"></div>
     <div class="overlay hidden"></div>
+    <div class="playername">
+      <label for="pn">Player's Name</label>
+      <input type="text" name="Player name " id="pn" maxlength="8"/>
+      <button class="btn playbtn" type="button">PLAY</button>
+    </div>
     <div class="win hidden endgame">
       Congratulations, You Won the Game<button
         class="newgame btn"
@@ -85,7 +91,7 @@
       </div>
     </div>
     <div class="playerscore">
-      <p>Player Score <span class="player">00</span></p>
+      <p><span class="playername1">Player</span> Score <span class="player">00</span></p>
     </div>
     <script src="script.js"></script>
   </body>

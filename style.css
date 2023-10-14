@@ -151,6 +151,17 @@ p {
   backdrop-filter: blur(3px);
   z-index: 5;
 }
+
+.overlay2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
 .close-modal {
   position: absolute;
   top: 1.2rem;
@@ -201,7 +212,8 @@ p {
   align-items: center;
 }
 
-.endgame {
+.endgame,
+.playername {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -221,7 +233,21 @@ p {
   text-align: center;
   color: white;
 }
+.playername label {
+  margin-bottom: 20px;
+}
 
+#pn {
+  padding: 10px;
+  border-radius: 9px;
+  width: 60%;
+  font-size: 0.7em;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+.playbtn {
+  font-size: 0.5em;
+}
 .newgame {
   margin-top: 20px;
   font-size: 0.5em;
