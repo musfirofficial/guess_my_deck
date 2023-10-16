@@ -5,7 +5,7 @@ Play: https://musfirofficial.github.io/guess_my_deck/
 ## Table of Contents
 
 - [**Getting Started**](#getting-started)
-- [**How to play**](#how_to_play)
+- [**How to play**](#how-to-play)
 
 ## Getting Started
 
