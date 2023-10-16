@@ -11,8 +11,10 @@
     <div class="overlay hidden"></div>
     <div class="playername">
       <label for="pn">Player's Name</label>
-      <input type="text" name="Player name " id="pn" maxlength="8"/>
-      <button class="btn playbtn" type="button">PLAY</button>
+      <input type="text" name="Player name " id="pn" maxlength="8" />
+      <button class="btn playbtn" type="button" autocomplete="off" autofocus>
+        PLAY
+      </button>
     </div>
     <div class="win hidden endgame">
       Congratulations, You Won the Game<button
@@ -91,7 +93,10 @@
       </div>
     </div>
     <div class="playerscore">
-      <p><span class="playername1">Player</span> Score <span class="player">00</span></p>
+      <p>
+        <span class="playername1">Player</span> Score
+        <span class="player">00</span>
+      </p>
     </div>
     <script src="script.js"></script>
   </body>
