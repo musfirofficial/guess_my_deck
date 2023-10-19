@@ -156,6 +156,7 @@ function playerCard2() {
 }
 playerCard[2].addEventListener('click', playerCard2);
 // 03.11 Start Button
+const jsConfetti = new JSConfetti();
 continueBtn.addEventListener('click', () => {
   if (botScore >= 100) {
     overlay.style.display = 'block';
@@ -163,6 +164,18 @@ continueBtn.addEventListener('click', () => {
   } else if (playerScore >= 100) {
     overlay.style.display = 'block';
     document.querySelector('.win').classList.remove('hidden');
+    jsConfetti.addConfetti({
+      confettiColors: [
+        '#ff0a54',
+        '#ff477e',
+        '#ff7096',
+        '#ff85a1',
+        '#fbb1bd',
+        '#f9bec7',
+      ],
+      confettiRadius: 6,
+      confettiNumber: 500,
+    });``
   }
   for (let i = 0; i < card.length; i++) {
     card[i].classList.remove('card1');
